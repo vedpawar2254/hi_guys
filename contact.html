@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact Us</title>
+  <meta name="description" content="Contact page with a responsive, accessible form." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0c10;
+      --card: #121318;
+      --text: #e8e8ea;
+      --muted: #a3a3ad;
+      --primary: #4f46e5; /* indigo */
+      --primary-600: #4338ca;
+      --ring: #7c3aed55;
+      --success: #16a34a;
+      --danger: #ef4444;
+      --border: #1f2430;
+      --shadow: 0 10px 25px rgba(0,0,0,.35);
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f7f8fb;
+        --card: #ffffff;
+        --text: #0b0c10;
+        --muted: #52525b;
+        --border: #e6e8ee;
+        --shadow: 0 10px 25px rgba(0,0,0,.08);
+      }
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 10% 0%, rgba(79,70,229,.25), transparent 60%),
+                  radial-gradient(1000px 500px at 90% 10%, rgba(124,58,237,.2), transparent 60%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+    header {
+      max-width: 1120px; margin: 0 auto; padding: 40px 20px 10px;
+    }
+    .brand {
+      display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: inherit;
+    }
+    .logo {
+      width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(135deg, var(--primary), #7c3aed);
+      box-shadow: var(--shadow);
+    }
+    .brand h1 { font-size: 1.25rem; margin: 0; letter-spacing: .4px; }
+
+    main { max-width: 1120px; margin: 0 auto; padding: 10px 20px 60px; }
+
+    .grid {
+      display: grid; grid-template-columns: 1.2fr .8fr; gap: 28px;
+    }
+    @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+
+    .card {
+      background: linear-gradient(180deg, color-mix(in oklab, var(--card), transparent 4%), var(--card));
+      border: 1px solid var(--border);
+      border-radius: 18px; padding: 22px; box-shadow: var(--shadow);
+      backdrop-filter: saturate(140%) blur(6px);
+    }
+
+    h2 { margin: 6px 0 14px; font-size: clamp(1.25rem, 1.8vw, 1.6rem); }
+    p.lead { color: var(--muted); margin-top: 0; }
+
+    form { display: grid; gap: 16px; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media (max-width: 640px) { .row { grid-template-columns: 1fr; } }
+
+    label { font-weight: 600; font-size: .95rem; }
+    .req { color: var(--danger); margin-left: 4px; }
+
+    input, textarea, select {
+      width: 100%; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--border);
+      background: #0f1116; color: var(--text);
+      outline: none; transition: box-shadow .15s ease, border-color .15s ease, transform .06s ease;
+    }
+    @media (prefers-color-scheme: light) {
+      input, textarea, select { background: #fff; }
+    }
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px var(--ring);
+    }
+    textarea { min-height: 140px; resize: vertical; }
+
+    .help { color: var(--muted); font-size: .85rem; margin-top: 6px; }
+
+    .actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+
+    button {
+      appearance: none; border: none; cursor: pointer; font-weight: 700; letter-spacing: .2px;
+      padding: 12px 16px; border-radius: 12px; background: var(--primary); color: white;
+      transition: transform .06s ease, filter .2s ease, background .2s ease;
+    }
+    button:hover { filter: brightness(1.05); }
+    button:active { transform: translateY(1px) scale(.99); }
+
+    .muted-btn { background: transparent; color: var(--muted); border: 1px dashed var(--border); }
+
+    .notice {
+      display: none; margin: 0; font-weight: 600; font-size: .95rem;
+      padding: 10px 12px; border-radius: 12px; border: 1px solid var(--border);
+    }
+    .notice.success { display: block; color: var(--success); border-color: color-mix(in oklab, var(--success), black 70%); }
+    .notice.error { display: block; color: var(--danger); border-color: color-mix(in oklab, var(--danger), black 70%); }
+
+    .side {
+      display: grid; gap: 14px;
+    }
+    .info {
+      display: grid; gap: 8px; font-size: .95rem; color: var(--muted);
+    }
+    .info b { color: var(--text); }
+
+    .map { border: 0; width: 100%; height: 260px; border-radius: 14px; }
+
+    footer { max-width: 1120px; margin: 0 auto; padding: 24px 20px 60px; color: var(--muted); font-size: .9rem; }
+    .tiny { font-size: .8rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="brand" href="#" aria-label="Homepage">
+      <div class="logo" aria-hidden="true"></div>
+      <h1>Contact Us</h1>
+    </a>
+  </header>
+
+  <main>
+    <div class="grid">
+      <section class="card" aria-labelledby="contact-heading">
+        <h2 id="contact-heading">We'd love to hear from you</h2>
+        <p class="lead">Fill out the form and we'll get back to you as soon as possible.</p>
+
+        <form id="contact-form" novalidate>
+          <div class="row">
+            <div>
+              <label for="name">Full Name <span class="req" aria-hidden="true">*</span></label>
+              <input id="name" name="name" type="text" placeholder="Jane Doe" autocomplete="name" required aria-required="true" />
+            </div>
+            <div>
+              <label for="email">Email <span class="req" aria-hidden="true">*</span></label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required aria-required="true" />
+            </div>
+          </div>
+
+          <div class="row">
+            <div>
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" type="tel" placeholder="+91 98765 43210" autocomplete="tel" pattern="^[+\d][\d\s-]{6,}$" />
+              <div class="help">Optional. Include country code if outside your region.</div>
+            </div>
+            <div>
+              <label for="topic">Topic</label>
+              <select id="topic" name="topic">
+                <option value="General">General</option>
+                <option value="Support">Support</option>
+                <option value="Sales">Sales</option>
+                <option value="Feedback">Feedback</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label for="subject">Subject <span class="req" aria-hidden="true">*</span></label>
+            <input id="subject" name="subject" type="text" placeholder="How can we help?" required aria-required="true" minlength="3" />
+          </div>
+
+          <div>
+            <label for="message">Message <span class="req" aria-hidden="true">*</span></label>
+            <textarea id="message" name="message" placeholder="Write your message here..." required aria-required="true" minlength="10"></textarea>
+            <div class="help">Min 10 characters.</div>
+          </div>
+
+          <div>
+            <label>
+              <input type="checkbox" id="consent" name="consent" required aria-required="true" />
+              I agree to the processing of my information.
+            </label>
+          </div>
+
+          <p id="form-status" class="notice" role="status" aria-live="polite"></p>
+
+          <div class="actions">
+            <button type="submit" id="submit-btn">Send Message</button>
+            <button type="reset" class="muted-btn">Reset</button>
+            <span class="tiny">* All fields marked with an asterisk are required.</span>
+          </div>
+        </form>
+      </section>
+
+      <aside class="side">
+        <section class="card">
+          <h2>Contact details</h2>
+          <div class="info">
+            <div><b>Email:</b> hello@example.com</div>
+            <div><b>Phone:</b> +91 98765 43210</div>
+            <div><b>Hours:</b> Mon–Fri, 9:30–18:30 IST</div>
+            <div><b>Address:</b> 221B Baker Street, London NW1 6XE</div>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Find us</h2>
+          <iframe class="map" title="Map" loading="lazy" allowfullscreen
+                  referrerpolicy="no-referrer-when-downgrade"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19801.9349068408!2d-0.17197232708102693!3d51.52376685612792!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761aceb123c8a9%3A0x50f62ce31463ac43!2s221B%20Baker%20St%2C%20London%20NW1%206XE%2C%20UK!5e0!3m2!1sen!2suk!4v1681580700000"></iframe>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <div>&copy; <span id="year"></span> Your Company. All rights reserved.</div>
+  </footer>
+
+  <script>
+    // util: serialize form data
+    function serializeForm(form) {
+      const data = new FormData(form);
+      return Object.fromEntries(data.entries());
+    }
+
+    function setStatus(type, message) {
+      const status = document.getElementById('form-status');
+      status.className = 'notice ' + type;
+      status.textContent = message;
+    }
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const form = document.getElementById('contact-form');
+    const submitBtn = document.getElementById('submit-btn');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // native validation first
+      if (!form.checkValidity()) {
+        setStatus('error', 'Please fix the highlighted fields and try again.');
+        form.reportValidity();
+        return;
+      }
+
+      // custom minimal checks
+      const msg = document.getElementById('message').value.trim();
+      if (msg.length < 10) {
+        setStatus('error', 'Message must be at least 10 characters.');
+        return;
+      }
+
+      setStatus('success', 'Sending…');
+      submitBtn.disabled = true;
+
+      // Demo: simulate async submit (replace with your endpoint)
+      try {
+        const payload = serializeForm(form);
+        await new Promise(r => setTimeout(r, 800)); // simulate network
+        console.log('Form payload', payload);
+        setStatus('success', 'Thanks! Your message has been sent.');
+        form.reset();
+      } catch (err) {
+        console.error(err);
+        setStatus('error', 'Something went wrong. Please try again later.');
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
